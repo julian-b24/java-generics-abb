@@ -2,23 +2,23 @@ package collections;
 
 public class ABB<N extends Nodo> implements IABB<N> {
 
-	private N r;
+	private N raiz;
 	
 	public ABB(N r) {
 		this.setR(r);
 	}
 	
 	public N getR() {
-		return r;
+		return raiz;
 	}
 
 	public void setR(N r) {
-		this.r = r;
+		this.raiz = r;
 	}
 	
 	@Override
 	public void agregarNodo(N n) {
-		agregarNodo(r, n);
+		agregarNodo(raiz, n);
 	}
 
 	private <T extends Comparable<T>, N extends Nodo<T>>void agregarNodo(N current, N newNodo) {
@@ -36,8 +36,8 @@ public class ABB<N extends Nodo> implements IABB<N> {
 			
 			if(n.darIzquierdo() == null && n.darDerecho() == null) {
 				
-				if(n == r) {
-					r = null;
+				if(n == raiz) {
+					raiz = null;
 				} else if(n.compareTo(n.darPadre()) <= 0) {
 					n.darPadre().agregarIzquierdo(null); 
 				} else {
@@ -49,15 +49,15 @@ public class ABB<N extends Nodo> implements IABB<N> {
 				
 				N hijo;
 				if(n.darIzquierdo() == null) {
-					hijo = n.darDerecho();
+					hijo = (N) n.darDerecho();
 				} else {
-					hijo = n.darIzquierdo();
+					hijo = (N) n.darIzquierdo();
 				}
 				
 				hijo.agregarPadre(n.darPadre());
 				
-				if(n == r) {
-					r = hijo;
+				if(n == raiz) {
+					raiz = hijo;
 				}else if (n.compareTo(n.darPadre()) <= 0) {
 					n.darPadre().agregarIzquierdo(hijo);
 				} else {
@@ -65,7 +65,7 @@ public class ABB<N extends Nodo> implements IABB<N> {
 				}
 			} else {
 				
-				N sucesor = minimo(n.darDerecho());
+				N sucesor = minimo((N) n.darDerecho());
 				n.cambiarValor(sucesor.mostrarValor());
 				eliminarNodo(sucesor);
 			}
@@ -77,38 +77,38 @@ public class ABB<N extends Nodo> implements IABB<N> {
 		if(n.darIzquierdo() == null) {
 			return n;
 		}else {
-			return minimo(n.darIzquierdo());
+			return minimo((N) n.darIzquierdo());
 		}
 	}
 
 	public <T> N buscarNodo(T t) {
 		N nodo = null;
-		if(r != null) {
-			if(r.mostrarValor().equals(t)) {
-				nodo = r;
+		if(raiz != null) {
+			if(raiz.mostrarValor().equals(t)) {
+				nodo = raiz;
 			}else {
-				nodo = buscarNodo(t, r);
+				nodo = buscarNodo(t, raiz);
 			}
 		}
 		return null;
 	}
 
-	private <T> N buscarNodo(T t, N r2) {
+	private <T> N buscarNodo(T t, N current) {
 		N nodo = null;
-		if(r2.mostrarValor().compareTo(t) > 0) {
-			if(r2.darIzquierdo() != null) {
-				if(r2.mostrarValor().equals(t)) {
-					nodo = (N) r2.darIzquierdo();
+		if(current.mostrarValor().compareTo(t) > 0) {
+			if(current.darIzquierdo() != null) {
+				if(current.mostrarValor().equals(t)) {
+					nodo = (N) current.darIzquierdo();
 				}else {
-					nodo = buscarNodo(t, (N) r2.darIzquierdo());
+					nodo = buscarNodo(t, (N) current.darIzquierdo());
 				}
 			}
-		}else if(r2.mostrarValor().compareTo(t) <= 0) {
-			if(r2.darDerecho() != null) {
-				if(r2.darDerecho().mostrarValor().equals(t)) {
-					nodo = (N) r2.darDerecho();
+		}else if(current.mostrarValor().compareTo(t) <= 0) {
+			if(current.darDerecho() != null) {
+				if(current.darDerecho().mostrarValor().equals(t)) {
+					nodo = (N) current.darDerecho();
 				}else {
-					nodo = buscarNodo(t, (N) r2.darDerecho());
+					nodo = buscarNodo(t, (N) current.darDerecho());
 				}
 			}
 		}
