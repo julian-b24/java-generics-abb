@@ -24,7 +24,7 @@ public class Main {
 		otro2 = new Nodo<Integer>(20);
 		arbol.agregarNodo(otro2);
 		arbol.agregarNodo(otro4);
-		
+
 		arbol.eliminarNodo(otro1);
 		
 		Nodo<Integer> otro5 = new Nodo<Integer>(8);
