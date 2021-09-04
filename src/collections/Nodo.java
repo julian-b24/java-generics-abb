@@ -41,11 +41,11 @@ public class Nodo<T extends Comparable<T>> {
 		return t.compareTo(n.mostrarValor());
 	}
 
-	public Nodo<T> agregarPadre() {
-		return padre;
+	public void agregarPadre(Nodo<T> pa) {
+		this.padre = padre;
 	}
 
-	public void darPadre(Nodo<T> padre) {
-		this.padre = padre;
+	public Nodo<T> darPadre(Nodo<T> padre) {
+		return padre;
 	}
 }
