@@ -32,7 +32,45 @@ public class ABB<N extends Nodo> implements IABB<N> {
 	}
 
 	public void eliminarNodo(N n) {
-		
+		if (n != null) {
+			
+			if(n.darIzquierdo() == null && n.darDerecho() == null) {
+				
+				if(n == r) {
+					r = null;
+				} else if(n.mostrarValor() <= n.darPadre().mostrarValor()) {
+					n.darPadre().agregarIzquierdo(null); 
+				} else {
+					n.darPadre().agregarDerecho(null);
+				}
+				
+				n.agregarPadre(null);
+			} else if(n.darIzquierdo() == null || n.darDerecho() == null) {
+				
+				N hijo;
+				if(n.darIzquierdo() == null) {
+					hijo = n.darDerecho();
+				} else {
+					hijo = n.darIzquierdo();
+				}
+				
+				hijo.agregarPadre(n.darPadre());
+				
+				if(n == r) {
+					r = hijo;
+				}else if (n.compareTo(n.darPadre) <= 0) { //if(remCar.getParent().getLeft() == remCar)
+					n.darPadre().agregarIzquierdo(hijo);
+				} else {
+					n.darPadre().agregarDerecho(hijo);
+				}
+			} else {
+				
+				N sucesor = minimo(n.darDerecho());
+				n.cambiarValor(sucesor.mostrarValor());
+				eliminarNodo(sucesor);
+			}
+			
+		}
 	}
 
 	public <T> N buscarNodo(T t) {
