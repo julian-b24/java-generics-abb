@@ -1,6 +1,6 @@
 package collections;
 
-public class Nodo<T> {
+public class Nodo<T extends Comparable<T>> {
 	
 	private T t;
 	private Nodo<T> izquierdo;
@@ -12,27 +12,31 @@ public class Nodo<T> {
 		izquierdo = null;	
 	}
 	
-	private void cambiarValor(T t) {
+	public void cambiarValor(T t) {
 		this.t = t;
 	}
 	
-	private T mostrarValor() {
+	public T mostrarValor() {
 		return t;
 	}
 	
-	private Nodo<T> darIzquierdo() {
+	public Nodo<T> darIzquierdo() {
 		return izquierdo;
 	}
 	
-	private Nodo<T> darDerecho() {
+	public Nodo<T> darDerecho() {
 		return derecho;
 	}
 	
-	private void agregarDerecho(Nodo<T> der) {
+	public void agregarDerecho(Nodo<T> der) {
 		derecho = der;
 	}
 	
-	private void agregarIzquierdo(Nodo<T> izq) {
+	public void agregarIzquierdo(Nodo<T> izq) {
 		izquierdo = izq;
+	}
+
+	public int compareTo(Nodo<T> n) {
+		return t.compareTo(n.mostrarValor());
 	}
 }
