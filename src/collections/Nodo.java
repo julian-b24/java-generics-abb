@@ -5,6 +5,7 @@ public class Nodo<T extends Comparable<T>> {
 	private T t;
 	private Nodo<T> izquierdo;
 	private Nodo<T> derecho;
+	private Nodo<T> padre;
 	
 	Nodo(T t){
 		this.t = t;
@@ -38,5 +39,13 @@ public class Nodo<T extends Comparable<T>> {
 
 	public int compareTo(Nodo<T> n) {
 		return t.compareTo(n.mostrarValor());
+	}
+
+	public Nodo<T> agregarPadre() {
+		return padre;
+	}
+
+	public void darPadre(Nodo<T> padre) {
+		this.padre = padre;
 	}
 }
