@@ -14,16 +14,28 @@ public class ABB<N extends Nodo> implements IABB<N> {
 
 	@Override
 	public void agregarNodo(N n) {
-		agregarNodo(raiz, n);
+		agregarNodo(raiz, n, null);
 	}
 
-	private <T extends Comparable<T>, N extends Nodo<T>>void agregarNodo(N current, N newNodo) {
+	private <T extends Comparable<T>, N extends Nodo<T>>void agregarNodo(N current, N newNodo, N parent) {
+		
+		//if(parent != null && current != null) {
+			//System.out.println(current.mostrarValor() + " " + newNodo.mostrarValor() + " " + parent.mostrarValor());
+		//}
+		
 		if(current == null) {
-			current = newNodo;
+			newNodo.agregarPadre(parent);
+			
+			if(newNodo.compareTo(parent) > 0) {
+				parent.agregarDerecho(newNodo);
+			} else {
+				parent.agregarIzquierdo(newNodo);
+			}
+			
 		} else if(current.compareTo(newNodo) > 0) {
-			agregarNodo(current.darIzquierdo(), newNodo);
+			agregarNodo(current.darIzquierdo(), newNodo, current);
 		} else {
-			agregarNodo(current.darDerecho(), newNodo);
+			agregarNodo(current.darDerecho(), newNodo, current);
 		}
 	}
 
