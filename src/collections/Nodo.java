@@ -7,7 +7,7 @@ public class Nodo<T extends Comparable<T>> {
 	private Nodo<T> derecho;
 	private Nodo<T> padre;
 	
-	Nodo(T t){
+	public Nodo(T t){
 		this.t = t;
 		derecho = null;
 		izquierdo = null;	
@@ -41,7 +41,7 @@ public class Nodo<T extends Comparable<T>> {
 		return t.compareTo(n.mostrarValor());
 	}
 
-	public void agregarPadre(Nodo<T> pa) {
+	public void agregarPadre(Nodo<T> padre) {
 		this.padre = padre;
 	}
 

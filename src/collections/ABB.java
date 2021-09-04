@@ -5,17 +5,13 @@ public class ABB<N extends Nodo> implements IABB<N> {
 	private N raiz;
 	
 	public ABB(N r) {
-		this.setR(r);
+		this.raiz = r;
 	}
 	
 	public N getR() {
 		return raiz;
 	}
 
-	public void setR(N r) {
-		this.raiz = r;
-	}
-	
 	@Override
 	public void agregarNodo(N n) {
 		agregarNodo(raiz, n);
@@ -90,7 +86,7 @@ public class ABB<N extends Nodo> implements IABB<N> {
 				nodo = buscarNodo(t, raiz);
 			}
 		}
-		return null;
+		return nodo;
 	}
 
 	private <T> N buscarNodo(T t, N current) {
