@@ -1,6 +1,6 @@
 package collections;
 
-public class ABB<N> {
+public class ABB<N> implements IABB<N> {
 
 	private N r;
 	
