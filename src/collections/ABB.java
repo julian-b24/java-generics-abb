@@ -38,7 +38,7 @@ public class ABB<N extends Nodo> implements IABB<N> {
 				
 				if(n == r) {
 					r = null;
-				} else if(n.mostrarValor() <= n.darPadre().mostrarValor()) {
+				} else if(n.compareTo(n.darPadre()) <= 0) {
 					n.darPadre().agregarIzquierdo(null); 
 				} else {
 					n.darPadre().agregarDerecho(null);
@@ -58,7 +58,7 @@ public class ABB<N extends Nodo> implements IABB<N> {
 				
 				if(n == r) {
 					r = hijo;
-				}else if (n.compareTo(n.darPadre) <= 0) { //if(remCar.getParent().getLeft() == remCar)
+				}else if (n.compareTo(n.darPadre()) <= 0) {
 					n.darPadre().agregarIzquierdo(hijo);
 				} else {
 					n.darPadre().agregarDerecho(hijo);
@@ -70,6 +70,14 @@ public class ABB<N extends Nodo> implements IABB<N> {
 				eliminarNodo(sucesor);
 			}
 			
+		}
+	}
+	
+	public N minimo(N n){
+		if(n.darIzquierdo() == null) {
+			return n;
+		}else {
+			return minimo(n.darIzquierdo());
 		}
 	}
 

@@ -45,7 +45,7 @@ public class Nodo<T extends Comparable<T>> {
 		this.padre = padre;
 	}
 
-	public Nodo<T> darPadre(Nodo<T> padre) {
+	public Nodo<T> darPadre() {
 		return padre;
 	}
 }
