@@ -16,7 +16,15 @@ public class ABB<N> implements IABB<N> {
 		this.r = r;
 	}
 	
-	public void añadirNodo(N n) {
+	@Override
+	public void agregarNodo(N n) {
+		agregarNodo(r, n);
+	}
+
+	private void agregarNodo(N current, N newNodo) {
+		if(current == null) {
+			current = newNodo;
+		}
 		
 	}
 
