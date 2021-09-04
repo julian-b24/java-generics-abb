@@ -28,4 +28,11 @@ public class Nodo<T> {
 		return derecho;
 	}
 	
+	private void agregarDerecho(Nodo<T> der) {
+		derecho = der;
+	}
+	
+	private void agregarIzquierdo(Nodo<T> izq) {
+		izquierdo = izq;
+	}
 }
