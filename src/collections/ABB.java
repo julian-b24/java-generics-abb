@@ -82,7 +82,37 @@ public class ABB<N extends Nodo> implements IABB<N> {
 	}
 
 	public <T> N buscarNodo(T t) {
+		N nodo = null;
+		if(r != null) {
+			if(r.mostrarValor().equals(t)) {
+				nodo = r;
+			}else {
+				nodo = buscarNodo(t, r);
+			}
+		}
 		return null;
+	}
+
+	private <T> N buscarNodo(T t, N r2) {
+		N nodo = null;
+		if(r2.mostrarValor().compareTo(t) > 0) {
+			if(r2.darIzquierdo() != null) {
+				if(r2.mostrarValor().equals(t)) {
+					nodo = (N) r2.darIzquierdo();
+				}else {
+					nodo = buscarNodo(t, (N) r2.darIzquierdo());
+				}
+			}
+		}else if(r2.mostrarValor().compareTo(t) <= 0) {
+			if(r2.darDerecho() != null) {
+				if(r2.darDerecho().mostrarValor().equals(t)) {
+					nodo = (N) r2.darDerecho();
+				}else {
+					nodo = buscarNodo(t, (N) r2.darDerecho());
+				}
+			}
+		}
+		return nodo;
 	}
 
 }
